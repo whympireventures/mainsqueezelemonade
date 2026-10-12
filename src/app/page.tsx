@@ -47,9 +47,6 @@ export default function HomePage() {
       <section className="relative w-full overflow-hidden bg-[#FAFAF7]">
         <div className="max-w-7xl mx-auto px-6 py-16 md:py-24 grid md:grid-cols-2 gap-12 items-center">
           <div className="order-2 md:order-1">
-            <p className="inline-block bg-[#F7E01A] text-[#1B4D2E] font-black text-xs uppercase tracking-widest px-4 py-1.5 rounded-full mb-6">
-              For Lemonade Lovers
-            </p>
             <h1 className="text-5xl md:text-6xl font-black text-[#1B4D2E] leading-tight mb-6">
               Island-Born<br />
               <span className="text-[#5A9A3A]">Lemonade.</span>
