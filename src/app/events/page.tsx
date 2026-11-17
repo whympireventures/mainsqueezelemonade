@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { Leaf, Tent, Gem, Building2, Sun, HeartHandshake, type LucideIcon } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Events | Main Squeeze Lemonade Co.",
@@ -8,13 +9,13 @@ export const metadata: Metadata = {
     "Book Main Squeeze Lemonade Co. for your next festival, market, wedding, corporate event, or community activation across Atlantic Canada.",
 };
 
-const eventTypes = [
-  { icon: "🌿", label: "Farmers Markets", body: "Fresh, local, and community-driven. Main Squeeze is a natural fit." },
-  { icon: "🎪", label: "Festivals & Fairs", body: "High energy, big crowds, bold flavours. We're built for it." },
-  { icon: "💍", label: "Weddings & Celebrations", body: "Elegant, refreshing, and crowd-pleasing. Perfect for your drinks table." },
-  { icon: "🏢", label: "Corporate Events", body: "Impress your guests with something premium, local, and memorable." },
-  { icon: "🏖️", label: "Summer Pop-Ups", body: "Wherever the sun is shining, Main Squeeze belongs." },
-  { icon: "🤝", label: "Community Events", body: "We're part of Atlantic Canada's fabric. Let's show up together." },
+const eventTypes: { icon: LucideIcon; label: string; body: string }[] = [
+  { icon: Leaf, label: "Farmers Markets", body: "Fresh, local, and community-driven. Main Squeeze is a natural fit." },
+  { icon: Tent, label: "Festivals & Fairs", body: "High energy, big crowds, bold flavours. We're built for it." },
+  { icon: Gem, label: "Weddings & Celebrations", body: "Elegant, refreshing, and crowd-pleasing. Perfect for your drinks table." },
+  { icon: Building2, label: "Corporate Events", body: "Impress your guests with something premium, local, and memorable." },
+  { icon: Sun, label: "Summer Pop-Ups", body: "Wherever the sun is shining, Main Squeeze belongs." },
+  { icon: HeartHandshake, label: "Community Events", body: "We're part of Atlantic Canada's fabric. Let's show up together." },
 ];
 
 const offerings = [
@@ -65,7 +66,7 @@ export default function EventsPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {eventTypes.map((e) => (
               <div key={e.label} className="bg-white border border-gray-100 rounded-3xl p-8 hover:border-[#F7E01A] transition-colors">
-                <div className="text-4xl mb-4">{e.icon}</div>
+                <e.icon className="w-8 h-8 mb-4 text-[#5A9A3A]" strokeWidth={1.75} />
                 <h3 className="font-black text-[#1B4D2E] text-lg mb-2">{e.label}</h3>
                 <p className="text-gray-500 text-sm leading-relaxed">{e.body}</p>
               </div>
@@ -157,8 +158,8 @@ export default function EventsPage() {
             </button>
             <p className="text-center text-xs text-gray-400">
               Or email us at{" "}
-              <a href="mailto:hello@mainsqueezelemonadeco.com" className="text-[#1B4D2E] hover:underline font-medium">
-                hello@mainsqueezelemonadeco.com
+              <a href="mailto:orders@mainsqueezelemonadeco.com" className="text-[#1B4D2E] hover:underline font-medium">
+                orders@mainsqueezelemonadeco.com
               </a>
             </p>
           </form>

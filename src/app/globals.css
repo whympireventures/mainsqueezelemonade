@@ -1,19 +1,113 @@
 @import "tailwindcss";
 
-:root {
-  --yellow: #F7E01A;
-  --green-dark: #1B4D2E;
-  --green-mid: #2D6A3F;
-  --green-leaf: #5A9A3A;
-  --off-white: #FAFAF7;
+/* Palette sampled from the beach photo; navy and yellow match the sell sheet
+   so print and web agree. See docs/main-squeeze-home-redesign.md §3. */
+@theme {
+  --color-navy: #05233D;      --color-navy-2: #3D5975;
+  --color-yellow: #FDE201;    --color-frangipani: #ECB00E;
+  --color-sky: #0AA8FA;       --color-lagoon: #07CEEC;   --color-lagoon-ink: #0A6C8A;
+  --color-palm: #589C07;      --color-palm-ink: #2F6A0B;
+  --color-cloud: #FFFFFF;     --color-shallows: #E8F8FB; --color-sand: #FCF7EC;
+  --color-driftwood: #E3BB94; --color-seaglass: #5A92A5;
+  --color-straw: #F49A9D;     --color-straw-ink: #C0283F;
+  --color-classic: #7CCC9D;   --color-classic-ink: #12733E;
+  --color-rhubarb: #F2A27B;   --color-rhubarb-ink: #AE3E1E;
+  --font-display: var(--font-source-serif), Georgia, serif;
+  --font-sans: var(--font-figtree), system-ui, sans-serif;
 }
 
-html {
-  scroll-behavior: smooth;
+/* In the base layer so utility classes (font-sans, not-italic…) can still
+   override these defaults on a given element. */
+@layer base {
+  /* Both html and body clip the x-axis: setting it on body alone lets the
+     viewport still pan sideways on mobile. `clip` (rather than `hidden`)
+     keeps position: sticky working on the header. */
+  /* Everything is sized in rem, so growing the root size on wide screens
+     scales the whole layout: 16px up to 1600px wide, then 1vw, capped at
+     32px (reached at 3200px). Keeps big monitors from showing a thin strip. */
+  html {
+    font-size: clamp(100%, 1vw, 200%);
+    scroll-behavior: smooth;
+    overflow-x: clip;
+  }
+
+  body {
+    background-color: var(--color-cloud);
+    color: var(--color-navy);
+    font-family: var(--font-sans);
+    overflow-x: clip;
+    width: 100%;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 800;
+  }
+
+  /* Section anchors land below the sticky header. */
+  [id] {
+    scroll-margin-top: 7rem;
+  }
 }
 
-body {
-  background-color: #ffffff;
-  color: #1a1a1a;
-  font-family: system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+/* ---------- Motion: the hero cans' entrance and the brand strip marquee ---------- */
+
+@keyframes can-rise {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.animate-can-rise {
+  animation: can-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Hero cans bob gently; the shadow below shrinks as each can lifts. */
+@keyframes can-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-14px); }
+}
+
+@keyframes shadow-float {
+  0%, 100% { transform: scaleX(1); opacity: 1; }
+  50%      { transform: scaleX(0.8); opacity: 0.55; }
+}
+
+.animate-can-float {
+  animation: can-float 4.8s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-shadow-float {
+  animation: shadow-float 4.8s ease-in-out infinite;
+}
+
+/* Brand strip marquee: two identical runs slide left by one run's width, then loop. */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+
+/* Reviews: two rows drift in opposite directions at slightly different speeds. */
+.animate-marquee-reviews {
+  animation: marquee 70s linear infinite;
+}
+
+.animate-marquee-reverse {
+  animation: marquee 80s linear infinite reverse;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  /* No drift: the review rows become swipeable instead. */
+  .animate-marquee-reviews, .animate-marquee-reverse { animation: none; }
+  .reviews-row { overflow-x: auto; scroll-snap-type: x mandatory; }
+  .reviews-row li { scroll-snap-align: start; }
+  .animate-can-rise { animation: none; }
+  .animate-marquee { animation: none; }
+  .animate-can-float, .animate-shadow-float { animation: none; }
 }

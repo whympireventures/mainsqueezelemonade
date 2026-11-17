@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Contact Us | Main Squeeze Lemonade Co.",
   description:
-    "Get in touch with Main Squeeze Lemonade Co. for wholesale inquiries, event bookings, retail opportunities, collaborations, and general questions.",
+    "Get in touch with Main Squeeze Lemonade Co. for wholesale inquiries, retail opportunities, collaborations, and general questions.",
 };
 
 export default function ContactPage() {
@@ -18,7 +18,7 @@ export default function ContactPage() {
             Let's Talk Lemonade.
           </h1>
           <p className="text-white/60 text-xl max-w-2xl mx-auto">
-            Whether you want to carry our product, book us for an event, or just say hello — we'd love to hear from you.
+            Whether you want to carry our product or just say hello — we'd love to hear from you.
           </p>
         </div>
       </section>
@@ -59,7 +59,6 @@ export default function ContactPage() {
                 <select className="w-full border border-gray-200 rounded-2xl px-4 py-3 text-sm text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#F7E01A]">
                   <option value="">Select…</option>
                   <option>Wholesale / Retail Partnership</option>
-                  <option>Event Booking</option>
                   <option>General Inquiry</option>
                   <option>Media & Press</option>
                   <option>Collaboration</option>
@@ -92,22 +91,15 @@ export default function ContactPage() {
                 <div>
                   <p className="text-white/40 text-xs uppercase tracking-widest mb-1">Email</p>
                   <a
-                    href="mailto:hello@mainsqueezelemonadeco.com"
+                    href="mailto:orders@mainsqueezelemonadeco.com"
                     className="text-white text-sm font-medium hover:text-[#F7E01A] transition-colors break-all"
                   >
-                    hello@mainsqueezelemonadeco.com
+                    orders@mainsqueezelemonadeco.com
                   </a>
                 </div>
                 <div>
                   <p className="text-white/40 text-xs uppercase tracking-widest mb-1">Location</p>
                   <p className="text-white text-sm font-medium">Prince Edward Island, Atlantic Canada</p>
-                </div>
-                <div>
-                  <p className="text-white/40 text-xs uppercase tracking-widest mb-2">Social</p>
-                  <div className="flex gap-4">
-                    <a href="#" className="text-white/60 hover:text-[#F7E01A] text-sm font-medium transition-colors">Facebook</a>
-                    <a href="#" className="text-white/60 hover:text-[#F7E01A] text-sm font-medium transition-colors">Instagram</a>
-                  </div>
                 </div>
                 <div className="border-t border-white/10 pt-5">
                   <p className="text-white/40 text-xs italic">We typically respond within 1–2 business days.</p>
@@ -126,10 +118,10 @@ export default function ContactPage() {
                   Wholesale & Partnerships →
                 </Link>
                 <Link
-                  href="/events"
+                  href="/wholesale#order"
                   className="bg-white text-[#1B4D2E] font-bold py-3 px-6 rounded-full text-center text-sm hover:bg-[#1B4D2E] hover:text-white transition-colors"
                 >
-                  Book Us for an Event →
+                  Start an Opening Order →
                 </Link>
               </div>
             </div>
